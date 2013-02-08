@@ -20,7 +20,7 @@ class BeanstalkdOptions extends AbstractOptions
      *
      * @param array $options
      */
-    public function setConnectionOptions(array $options)
+    public function setConnection(array $options)
     {
         $this->connection = new ConnectionOptions($options);
     }
@@ -30,7 +30,7 @@ class BeanstalkdOptions extends AbstractOptions
      *
      * @return ConnectionOptions
      */
-    public function getConnectionOptions()
+    public function getConnection()
     {
         return $this->connection;
     }

@@ -6,7 +6,7 @@ use SlmQueueBeanstalkd\Options\BeanstalkdOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class BeanstalkedOptionsFactory implements FactoryInterface
+class BeanstalkdOptionsFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}

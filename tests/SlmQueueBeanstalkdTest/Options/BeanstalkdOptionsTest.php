@@ -23,7 +23,12 @@ class BeanstalkdOptionsTest extends TestCase
     {
         /** @var $beanstalkdOptions \SlmQueueBeanstalkd\Options\BeanstalkdOptions */
         $beanstalkdOptions = $this->serviceManager->get('SlmQueueBeanstalkd\Options\BeanstalkdOptions');
+        $connectionOptions = $beanstalkdOptions->getConnection();
 
         $this->assertInstanceOf('SlmQueueBeanstalkd\Options\BeanstalkdOptions', $beanstalkdOptions);
+        $this->assertInstanceOf('SlmQueueBeanstalkd\Options\ConnectionOptions', $connectionOptions);
+        $this->assertEquals('0.0.0.0', $connectionOptions->getHost());
+        $this->assertEquals(11300, $connectionOptions->getPort());
+        $this->assertEquals(2, $connectionOptions->getTimeout());
     }
 }
