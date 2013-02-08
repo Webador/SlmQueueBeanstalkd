@@ -11,7 +11,9 @@ use Zend\ModuleManager\Feature;
  */
 class Module implements
     Feature\AutoloaderProviderInterface,
-    Feature\ConfigProviderInterface
+    Feature\ConfigProviderInterface,
+    Feature\ConsoleBannerProviderInterface,
+    Feature\ConsoleUsageProviderInterface
 {
     /**
      * {@inheritDoc}
