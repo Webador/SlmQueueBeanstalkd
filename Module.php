@@ -54,8 +54,8 @@ class Module implements
     public function getConsoleUsage(AdapterInterface $console)
     {
         return array(
-            'queue beanstalkd --queueName= --start' => 'Process the jobs',
-            array('--queueName=', 'Queue\'s name to process')
+            'queue beanstalkd <queueName> --start' => 'Process the jobs',
+            array('<queueName>', 'Queue\'s name to process')
         );
     }
 }

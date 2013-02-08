@@ -2,6 +2,7 @@
 
 namespace SlmQueueBeanstalkd\Controller;
 
+use Exception;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -18,10 +19,14 @@ class WorkerController extends AbstractActionController
         $worker    = $this->serviceLocator->get('SlmQueueBeanstalkd\Worker\Worker');
         $queueName = $this->params('queue');
 
-        $count = $worker->processQueue($queueName);
+        try {
+            $count = $worker->processQueue($queueName);
+        } catch(Exception $exception) {
+            return "\nAn error occurred " . $exception->getMessage() . "\n\n";
+        }
 
         return sprintf(
-            "\nWork for queue %s is done, %s jobs were processed\n",
+            "\nWork for queue %s is done, %s jobs were processed\n\n",
             $queueName,
             $count
         );
