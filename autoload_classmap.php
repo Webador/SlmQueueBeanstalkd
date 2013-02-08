@@ -13,7 +13,6 @@ return array(
     'SlmQueueBeanstalkd\Options\ConnectionOptions'         => __DIR__ . '/src/SlmQueueBeanstalkd/Options/ConnectionOptions.php',
     'SlmQueueBeanstalkd\Queue\Tube'                        => __DIR__ . '/src/SlmQueueBeanstalkd/Queue/Tube.php',
     'SlmQueueBeanstalkd\Queue\TubeInterface'               => __DIR__ . '/src/SlmQueueBeanstalkd/Queue/TubeInterface.php',
-    'SlmQueueBeanstalkd\Service\PheanstalkService'         => __DIR__ . '/src/SlmQueueBeanstalkd/Service/PheanstalkService.php',
     'SlmQueueBeanstalkd\Version'                           => __DIR__ . '/src/SlmQueueBeanstalkd/Version.php',
     'SlmQueueBeanstalkd\Worker\Worker'                     => __DIR__ . '/src/SlmQueueBeanstalkd/Worker/Worker.php',
 );

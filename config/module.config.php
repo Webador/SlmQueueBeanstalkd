@@ -3,6 +3,7 @@
 return array(
     'service_manager' => array(
         'factories' => array(
+            'SlmQueueBeanstalkd\Options\BeanstalkdOptions' => 'SlmQueueBeanstalkd\Factory\BeanstalkdOptionsFactory',
             'SlmQueueBeanstalkd\Service\PheanstalkService' => 'SlmQueueBeanstalkd\Factory\PheanstalkFactory',
             'SlmQueueBeanstalkd\Worker\Worker'             => 'SlmQueueBeanstalkd\Factory\WorkerFactory'
         )

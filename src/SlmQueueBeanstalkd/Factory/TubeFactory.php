@@ -19,6 +19,6 @@ class TubeFactory implements FactoryInterface
         $jobPluginManager = $serviceLocator->get('SlmQueue\Job\JobPluginManager');
         $pheanstalk       = $serviceLocator->get('SlmQueueBeanstalkd\Service\PheanstalkService');
 
-        return new Tube($pheanstalk->getPheanstalk(), $requestedName, $jobPluginManager);
+        return new Tube($pheanstalk, $requestedName, $jobPluginManager);
     }
 }
