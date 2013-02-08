@@ -8,6 +8,7 @@ Requirements
 ------------
 * [Zend Framework 2](https://github.com/zendframework/zf2)
 * [SlmQueue](https://github.com/juriansluiman/SlmQueue)
+* [Pda Pheanstalk](https://github.com/pda/pheanstalk)
 
 
 Installation
@@ -22,4 +23,6 @@ add the following line into your `composer.json` file:
 }
 ```
 
-Then, enable the module by adding `SlmQueueBeanstalkd` in your application.config.php file. You may also want to configure the module: just copy the `slm_queue_beanstalkd.local.php.dist` (you can find this file in the config folder of SlmQueueBeanstalkd) into your config/autoload folder, and override what you want.
+Then, enable the module by adding `SlmQueueBeanstalkd` in your application.config.php file. You may also want to
+configure the module: just copy the `slm_queue_beanstalkd.local.php.dist` (you can find this file in the config
+folder of SlmQueueBeanstalkd) into your config/autoload folder, and override what you want.
