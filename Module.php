@@ -6,7 +6,7 @@ use Zend\Loader;
 use Zend\ModuleManager\Feature;
 
 /**
- * SlmQueue
+ * SlmQueueBeanstalkd
  */
 class Module implements
     Feature\AutoloaderProviderInterface,
