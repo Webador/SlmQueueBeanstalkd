@@ -17,8 +17,8 @@ class TubeFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator, $name = '', $requestedName = '')
     {
         $parentLocator    = $serviceLocator->getServiceLocator();
-        $jobPluginManager = $parentLocator->get('SlmQueue\Job\JobPluginManager');
         $pheanstalk       = $parentLocator->get('SlmQueueBeanstalkd\Service\PheanstalkService');
+        $jobPluginManager = $parentLocator->get('SlmQueue\Job\JobPluginManager');
 
         return new Tube($pheanstalk, $requestedName, $jobPluginManager);
     }
