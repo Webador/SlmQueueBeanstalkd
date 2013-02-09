@@ -18,7 +18,7 @@ class PheanstalkFactory implements FactoryInterface
     {
         /** @var $beanstalkdOptions \SlmQueueBeanstalkd\Options\BeanstalkdOptions */
         $beanstalkdOptions = $serviceLocator->get('SlmQueueBeanstalkd\Options\BeanstalkdOptions');
-        $connectionOptions = $beanstalkdOptions->getConnectionOptions();
+        $connectionOptions = $beanstalkdOptions->getConnection();
 
         return new Pheanstalk(
             $connectionOptions->getHost(),

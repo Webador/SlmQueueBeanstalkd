@@ -17,7 +17,7 @@ class WorkerController extends AbstractActionController
     {
         /** @var $worker \SlmQueueBeanstalkd\Worker\Worker */
         $worker    = $this->serviceLocator->get('SlmQueueBeanstalkd\Worker\Worker');
-        $queueName = $this->params('queue');
+        $queueName = $this->params('queueName');
 
         try {
             $count = $worker->processQueue($queueName);

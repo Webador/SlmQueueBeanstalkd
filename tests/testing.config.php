@@ -16,4 +16,17 @@
  * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
-return array();
+return array(
+    'slm_queue' => array(
+        'worker' => array(
+            // Limit runs to 1 in test environment
+            'max_runs' => 1
+        ),
+
+        'queues' => array(
+            'factories' => array(
+                'newsletter' => 'SlmQueueBeanstalkd\Factory\TubeFactory'
+            )
+        )
+    )
+);
