@@ -29,7 +29,7 @@
         "zendframework/zend-servicemanager": "2.*",
         "zendframework/zend-stdlib": "2.*",
         "juriansluiman/slm-queue": ">=0.2",
-        "pda/pheanstalk": ">=1.1"
+        "pda/pheanstalk": ">=1.1.0@stable"
     },
     "autoload": {
         "psr-0": {
