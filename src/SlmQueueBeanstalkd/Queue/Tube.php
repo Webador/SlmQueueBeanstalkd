@@ -2,6 +2,7 @@
 
 namespace SlmQueueBeanstalkd\Queue;
 
+use Pheanstalk_Job;
 use Pheanstalk_Pheanstalk as Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Job\JobPluginManager;
@@ -66,6 +67,10 @@ class Tube extends AbstractQueue implements TubeInterface
             $this->getName(),
             isset($options['timeout']) ? $options['timeout'] : null
         );
+
+        if (!$job instanceof Pheanstalk_Job) {
+            return null;
+        }
 
         $data = json_decode($job->getData(), true);
 
