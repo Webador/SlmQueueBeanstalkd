@@ -14,7 +14,7 @@ class PheanstalkFactory implements FactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function createService(ServiceLocatorInterface $serviceLocator, $name = '', $requestedName = '')
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var $beanstalkdOptions \SlmQueueBeanstalkd\Options\BeanstalkdOptions */
         $beanstalkdOptions = $serviceLocator->get('SlmQueueBeanstalkd\Options\BeanstalkdOptions');
