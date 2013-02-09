@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * This is the config file for SlmQueueBeanstalkd. Just drop this file into your config/autoload folder (don't
+ * forget to remove the .dist extension from the file), and configure it as you want
+ */
+
+return array(
+    'slm_queue' => array(
+        /**
+         * Configuration for Beanstalkd
+         */
+        'beanstalkd' => array(
+            'connection' => array(
+                /**
+                 * Connection host
+                 */
+                // 'host' => '0.0.0.0',
+
+                /**
+                 * Connection post
+                 */
+                // 'port' => 11300,
+
+                /**
+                 * How long, in seconds, the socket will wait for the server to respond to its
+                 * initial connection attempt
+                 */
+                // 'timeout' => 2
+            ),
+        ),
+    ),
+);

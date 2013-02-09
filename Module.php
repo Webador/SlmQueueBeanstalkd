@@ -3,6 +3,7 @@
 namespace SlmQueueBeanstalkd;
 
 use Zend\Loader;
+use Zend\Console\Adapter\AdapterInterface;
 use Zend\ModuleManager\Feature;
 
 /**
@@ -10,7 +11,9 @@ use Zend\ModuleManager\Feature;
  */
 class Module implements
     Feature\AutoloaderProviderInterface,
-    Feature\ConfigProviderInterface
+    Feature\ConfigProviderInterface,
+    Feature\ConsoleBannerProviderInterface,
+    Feature\ConsoleUsageProviderInterface
 {
     /**
      * {@inheritDoc}
@@ -35,5 +38,28 @@ class Module implements
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getConsoleBanner(AdapterInterface $console)
+    {
+        return "\n----------------------------------------------------------------------\n" .
+               "SlmQueueBeanstalkd | Beanstalkd Zend Framework 2 module\n" .
+               "----------------------------------------------------------------------\n";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getConsoleUsage(AdapterInterface $console)
+    {
+        return array(
+            'queue beanstalkd <queueName> [--timeout=] --start' => 'Process the jobs',
+
+            array('<queueName>', 'Queue\'s name to process'),
+            array('--timeout=', 'Timeout (in seconds) for which the call will wait for a job to arrive in the queue before returning')
+        );
     }
 }
