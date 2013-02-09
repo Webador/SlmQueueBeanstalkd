@@ -56,8 +56,10 @@ class Module implements
     public function getConsoleUsage(AdapterInterface $console)
     {
         return array(
-            'queue beanstalkd <queueName> --start' => 'Process the jobs',
-            array('<queueName>', 'Queue\'s name to process')
+            'queue beanstalkd <queueName> [--timeout=] --start' => 'Process the jobs',
+
+            array('<queueName>', 'Queue\'s name to process'),
+            array('--timeout=', 'Timeout (in seconds) for which the call will wait for a job to arrive in the queue before returning')
         );
     }
 }
