@@ -67,7 +67,9 @@ class Tube extends AbstractQueue implements TubeInterface
             isset($options['timeout']) ? $options['timeout'] : null
         );
 
-        return $this->createJob($job->getData(), array('id' => $job->getId()));
+        $data = json_decode($job->getData(), true);
+
+        return $this->createJob($data['class'], $data['content'], array('id' => $job->getId()));
     }
 
     /**
