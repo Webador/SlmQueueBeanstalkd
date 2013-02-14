@@ -45,7 +45,6 @@ class WorkerTest extends TestCase
 
         $this->queueMock->expects($this->once())
             ->method('delete')
-            ->with($job)
             ->will($this->returnCallback(function() use ($job) {
                 $job->setContent('deleted');
             })
@@ -62,7 +61,6 @@ class WorkerTest extends TestCase
 
         $this->queueMock->expects($this->once())
             ->method('release')
-            ->with($job)
             ->will($this->returnCallback(function() use ($job) {
                 $job->setContent('released');
             })
@@ -79,7 +77,6 @@ class WorkerTest extends TestCase
 
         $this->queueMock->expects($this->once())
             ->method('bury')
-            ->with($job)
             ->will($this->returnCallback(function() use ($job) {
                 $job->setContent('buried');
             })
@@ -96,7 +93,6 @@ class WorkerTest extends TestCase
 
         $this->queueMock->expects($this->once())
             ->method('bury')
-            ->with($job)
             ->will($this->returnCallback(function() use ($job) {
                 $job->setContent('buried');
             })
