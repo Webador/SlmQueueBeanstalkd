@@ -13,6 +13,7 @@ class BeanstalkdOptionsFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new BeanstalkdOptions($serviceLocator->get('Config')['slm_queue']['beanstalkd']);
+        $config = $serviceLocator->get('Config');
+        return new BeanstalkdOptions($config['slm_queue']['beanstalkd']);
     }
 }
