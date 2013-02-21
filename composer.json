@@ -32,6 +32,9 @@
         "juriansluiman/slm-queue": ">=0.2",
         "pda/pheanstalk": "dev-master"
     },
+    "require-dev": {
+        "zendframework/zend-config": "2.*"
+    },
     "autoload": {
         "psr-0": {
             "SlmQueue": "src/"
