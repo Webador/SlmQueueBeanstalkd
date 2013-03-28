@@ -45,9 +45,7 @@ class Module implements
      */
     public function getConsoleBanner(AdapterInterface $console)
     {
-        return "\n----------------------------------------------------------------------\n" .
-               "SlmQueueBeanstalkd | Beanstalkd Zend Framework 2 module\n" .
-               "----------------------------------------------------------------------\n";
+        return 'SlmQueueBeanstalkd ' . Version::VERSION;
     }
 
     /**
