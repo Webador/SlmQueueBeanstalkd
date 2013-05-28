@@ -37,18 +37,17 @@ class WorkerControllerTest extends TestCase
     public function testThrowExceptionIfQueueIsUnknown()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
-        $routeMatch = new RouteMatch(array('queueName' => 'unknownQueue'));
+        $routeMatch = new RouteMatch(array('queue' => 'unknown'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
+        $this->setExpectedException('Zend\ServiceManager\Exception\ServiceNotFoundException');
         $result = $controller->processAction();
-
-        $this->assertContains('An error occurred', $result);
     }
 
     public function testCorrectlyCountJobs()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
-        $routeMatch = new RouteMatch(array('queueName' => 'newsletter'));
+        $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
         $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"Foo"}');
@@ -59,6 +58,8 @@ class WorkerControllerTest extends TestCase
 
         $result = $controller->processAction();
 
-        $this->assertContains('Work for queue newsletter is done, 1 jobs were processed', $result);
+        $this->assertContains('newsletter', $result);
+        $this->assertContains('finished', strtolower($result));
+        $this->assertContains('1', $result);
     }
 }
