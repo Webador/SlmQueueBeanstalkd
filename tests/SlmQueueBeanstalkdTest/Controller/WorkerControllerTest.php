@@ -37,7 +37,7 @@ class WorkerControllerTest extends TestCase
     public function testThrowExceptionIfQueueIsUnknown()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
-        $routeMatch = new RouteMatch(array('queueName' => 'unknownQueue'));
+        $routeMatch = new RouteMatch(array('queue' => 'unknownQueue'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
         $result = $controller->processAction();
@@ -48,7 +48,7 @@ class WorkerControllerTest extends TestCase
     public function testCorrectlyCountJobs()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
-        $routeMatch = new RouteMatch(array('queueName' => 'newsletter'));
+        $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
         $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"Foo"}');
