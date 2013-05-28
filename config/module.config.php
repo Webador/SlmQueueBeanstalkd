@@ -21,7 +21,7 @@ return array(
                 'slm-queue-beanstalked-worker' => array(
                     'type'    => 'Simple',
                     'options' => array(
-                        'route'    => 'queue beanstalkd <queueName> [--timeout=] --start',
+                        'route'    => 'queue beanstalkd <queue> [--timeout=]',
                         'defaults' => array(
                             'controller' => 'SlmQueueBeanstalkd\Controller\Worker',
                             'action'     => 'process'

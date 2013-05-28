@@ -54,19 +54,19 @@ class Module implements
     public function getConsoleUsage(AdapterInterface $console)
     {
         return array(
-            'queue beanstalkd <queueName> [--timeout=] --start' => 'Process the jobs',
+            'queue beanstalkd <queue> [--timeout=]' => 'Process jobs with beanstalkd',
 
-            array('<queueName>', 'Queue\'s name to process'),
-            array('--timeout=', 'Timeout (in seconds) for which the call will wait for a job to arrive in the queue before returning')
+            array('<queue>', 'Queue\'s name to process'),
+            array('--timeout=', 'Timeout (in seconds) to wait for a job to arrive')
         );
     }
-    
+
     /**
      * This ModuleManager feature was introduced in ZF 2.1 to check if all the dependencies needed by a module
      * were correctly loaded. However, as we want to keep backward-compatibility with ZF 2.0, please DO NOT
      * explicitely implement Zend\ModuleManager\Feature\DependencyIndicatorInterface. Just write this method and
      * the module manager will automatically call it
-     * 
+     *
      * @return array
      */
     public function getModuleDependencies()
