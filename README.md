@@ -146,8 +146,8 @@ class SimpleJob extends AbstractJob
 SlmQueueBeanstalkd provides a command-line tool that can be used to pop and execute jobs. You can type the following
 command within the public folder of your Zend Framework 2 application:
 
-`php index.php queue beanstalkd <queueName> [--timeout=] --start`
+`php index.php queue beanstalkd <queue> [--timeout=]`
 
-The queueName is a mandatory parameter, while the timeout is an optional flag that specifies the duration in seconds
+The queue is a mandatory parameter, while the timeout is an optional flag that specifies the duration in seconds
 for which the call will wait for a job to arrive in the queue before returning (because the script can wait forever
 if no job come).
