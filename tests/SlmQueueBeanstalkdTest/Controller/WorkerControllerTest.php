@@ -40,7 +40,7 @@ class WorkerControllerTest extends TestCase
         $routeMatch = new RouteMatch(array('queue' => 'unknown'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
-        $this->setExpectedException('Zend\Servicanager\Exception\ServiceNotFoundException');
+        $this->setExpectedException('Zend\ServiceManager\Exception\ServiceNotFoundException');
         $result = $controller->processAction();
     }
 
