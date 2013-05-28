@@ -32,11 +32,11 @@
         "pda/pheanstalk": "2.*"
     },
     "require-dev": {
-        "zendframework/zend-config": "2.*"
+        "zendframework/zendframework": "2.*"
     },
     "autoload": {
         "psr-0": {
-            "SlmQueue": "src/"
+            "SlmQueueBeanstalkd": "src/"
         },
         "classmap": [
             "./Module.php"
