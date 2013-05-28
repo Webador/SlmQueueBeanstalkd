@@ -37,12 +37,11 @@ class WorkerControllerTest extends TestCase
     public function testThrowExceptionIfQueueIsUnknown()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
-        $routeMatch = new RouteMatch(array('queue' => 'unknownQueue'));
+        $routeMatch = new RouteMatch(array('queue' => 'unknown'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
+        $this->setExpectedException('Zend\Servicanager\Exception\ServiceNotFoundException');
         $result = $controller->processAction();
-
-        $this->assertContains('An error occurred', $result);
     }
 
     public function testCorrectlyCountJobs()
@@ -59,6 +58,8 @@ class WorkerControllerTest extends TestCase
 
         $result = $controller->processAction();
 
-        $this->assertContains('Work for queue newsletter is done, 1 jobs were processed', $result);
+        $this->assertContains('newsletter', $result);
+        $this->assertContains('finished', strtolower($result));
+        $this->assertContains('1', $result);
     }
 }
