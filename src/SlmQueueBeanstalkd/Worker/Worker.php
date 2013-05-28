@@ -20,7 +20,10 @@ class Worker extends AbstractWorker
     public function processJob(JobInterface $job, QueueInterface $queue)
     {
         if (!$queue instanceof TubeInterface) {
-            return;
+            throw new InvalidQueueException(sprintf(
+                'Invalid queue type given, expected a SlmQueueBeanstalkd\Queue\TubeInterface, %s given',
+                get_class($queue)
+            ));
         }
 
         try {
