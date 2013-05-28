@@ -9,6 +9,12 @@ return array(
         )
     ),
 
+    'controllers' => array(
+        'factories' => array(
+            'SlmQueueBeanstalkd\Controller\Worker'         => 'SlmQueueBeanstalkd\Factory\WorkerControllerFactory',
+        ),
+    ),
+
     'console'   => array(
         'router' => array(
             'routes' => array(
@@ -24,12 +30,6 @@ return array(
                 ),
             ),
         ),
-    ),
-
-    'controllers' => array(
-        'invokables' => array(
-            'SlmQueueBeanstalkd\Controller\Worker' => 'SlmQueueBeanstalkd\Controller\WorkerController'
-        )
     ),
 
     'slm_queue' => array(
