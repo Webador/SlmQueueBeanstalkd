@@ -25,7 +25,7 @@ return array(
 
         'queue_manager' => array(
             'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\TubeFactory'
+                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
             )
         )
     )
