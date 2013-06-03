@@ -1,6 +1,6 @@
 <?php
 
-namespace SlmQueueBeanstalkdTest\Options;
+namespace SlmQueueBeanstalkdTest\Controller;
 
 use Pheanstalk_Job;
 use PHPUnit_Framework_TestCase as TestCase;
@@ -8,7 +8,7 @@ use SlmQueueBeanstalkdTest\Util\ServiceManagerFactory;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\ServiceManager\ServiceManager;
 
-class WorkerControllerTest extends TestCase
+class BeanstalkdWorkerControllerTest extends TestCase
 {
     /**
      * @var ServiceManager
@@ -36,7 +36,7 @@ class WorkerControllerTest extends TestCase
 
     public function testThrowExceptionIfQueueIsUnknown()
     {
-        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
+        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
         $routeMatch = new RouteMatch(array('queue' => 'unknown'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
@@ -46,7 +46,7 @@ class WorkerControllerTest extends TestCase
 
     public function testCorrectlyCountJobs()
     {
-        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\Worker');
+        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
         $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 

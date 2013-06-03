@@ -5,11 +5,11 @@ namespace SlmQueueBeanstalkdTest\Worker;
 use Exception;
 use PHPUnit_Framework_TestCase as TestCase;
 use SlmQueueBeanstalkdTest\Asset;
-use SlmQueueBeanstalkd\Worker\Worker as BeanstalkdWorker;
+use SlmQueueBeanstalkd\Worker\BeanstalkdWorker;
 use SlmQueueBeanstalkdTest\Util\ServiceManagerFactory;
 use Zend\ServiceManager\ServiceManager;
 
-class WorkerTest extends TestCase
+class BeanstalkdWorkerTest extends TestCase
 {
     /**
      * @var ServiceManager
@@ -17,7 +17,7 @@ class WorkerTest extends TestCase
     protected $serviceManager;
 
     /**
-     * @var \SlmQueueBeanstalkd\Queue\TubeInterface
+     * @var \SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface
      */
     protected $queueMock;
 
@@ -32,7 +32,7 @@ class WorkerTest extends TestCase
         parent::setUp();
         $this->serviceManager = ServiceManagerFactory::getServiceManager();
 
-        $this->queueMock  = $this->getMock('SlmQueueBeanstalkd\Queue\TubeInterface');
+        $this->queueMock  = $this->getMock('SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface');
         $queueManagerMock = $this->getMock('SlmQueue\Queue\QueuePluginManager');
         $workerOptions    = $this->serviceManager->get('SlmQueue\Options\WorkerOptions');
 
