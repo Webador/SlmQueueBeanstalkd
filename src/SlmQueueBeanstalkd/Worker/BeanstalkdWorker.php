@@ -8,19 +8,19 @@ use SlmQueue\Job\JobInterface;
 use SlmQueue\Queue\QueueInterface;
 use SlmQueue\Worker\AbstractWorker;
 use SlmQueueBeanstalkd\Job\Exception as JobException;
-use SlmQueueBeanstalkd\Queue\TubeInterface;
+use SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface;
 
 /**
  * Worker for Beanstalkd
  */
-class Worker extends AbstractWorker
+class BeanstalkdWorker extends AbstractWorker
 {
     /**
      * {@inheritDoc}
      */
     public function processJob(JobInterface $job, QueueInterface $queue)
     {
-        if (!$queue instanceof TubeInterface) {
+        if (!$queue instanceof BeanstalkdQueueInterface) {
             return;
         }
 
