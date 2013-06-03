@@ -2,14 +2,14 @@
 
 namespace SlmQueueBeanstalkd\Factory;
 
-use SlmQueueBeanstalkd\Worker\Worker as BeanstalkdWorker;
+use SlmQueueBeanstalkd\Worker\BeanstalkdWorker;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * WorkerFactory
+ * BeanstalkdWorkerFactory
  */
-class WorkerFactory implements FactoryInterface
+class BeanstalkdWorkerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}

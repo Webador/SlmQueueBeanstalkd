@@ -2,14 +2,14 @@
 
 namespace SlmQueueBeanstalkd\Factory;
 
-use SlmQueueBeanstalkd\Queue\Tube;
+use SlmQueueBeanstalkd\Queue\BeanstalkdQueue;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * TubeFactory
+ * BeanstalkdQueueFactory
  */
-class TubeFactory implements FactoryInterface
+class BeanstalkdQueueFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
@@ -20,6 +20,6 @@ class TubeFactory implements FactoryInterface
         $pheanstalk       = $parentLocator->get('SlmQueueBeanstalkd\Service\PheanstalkService');
         $jobPluginManager = $parentLocator->get('SlmQueue\Job\JobPluginManager');
 
-        return new Tube($pheanstalk, $requestedName, $jobPluginManager);
+        return new BeanstalkdQueue($pheanstalk, $requestedName, $jobPluginManager);
     }
 }

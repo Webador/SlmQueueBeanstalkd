@@ -5,13 +5,13 @@ return array(
         'factories' => array(
             'SlmQueueBeanstalkd\Options\BeanstalkdOptions' => 'SlmQueueBeanstalkd\Factory\BeanstalkdOptionsFactory',
             'SlmQueueBeanstalkd\Service\PheanstalkService' => 'SlmQueueBeanstalkd\Factory\PheanstalkFactory',
-            'SlmQueueBeanstalkd\Worker\Worker'             => 'SlmQueueBeanstalkd\Factory\WorkerFactory'
+            'SlmQueueBeanstalkd\Worker\BeanstalkdWorker'   => 'SlmQueueBeanstalkd\Factory\BeanstalkdWorkerFactory'
         )
     ),
 
     'controllers' => array(
         'factories' => array(
-            'SlmQueueBeanstalkd\Controller\Worker'         => 'SlmQueueBeanstalkd\Factory\WorkerControllerFactory',
+            'SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController' => 'SlmQueueBeanstalkd\Factory\BeanstalkdWorkerControllerFactory',
         ),
     ),
 
@@ -23,7 +23,7 @@ return array(
                     'options' => array(
                         'route'    => 'queue beanstalkd <queue> [--timeout=]',
                         'defaults' => array(
-                            'controller' => 'SlmQueueBeanstalkd\Controller\Worker',
+                            'controller' => 'SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController',
                             'action'     => 'process'
                         ),
                     ),
