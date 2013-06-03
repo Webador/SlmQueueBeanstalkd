@@ -9,5 +9,4 @@ use SlmQueue\Controller\AbstractWorkerController;
  */
 class BeanstalkdWorkerController extends AbstractWorkerController
 {
-
 }
