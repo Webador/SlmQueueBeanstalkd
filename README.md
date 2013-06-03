@@ -45,9 +45,7 @@ Copy the `slm_queue_beanstalkd.local.php.dist` file to your `config/autoload` fo
 
 ### Adding queues
 
-> In Beanstalkd terminology, a queue is called a tube, but they are fundamentally the same thing.
-
-SlmQueueBeanstalkd provides an interface for Tube that extends `SlmQueue\Queue\QueueInterface`, and provides in
+SlmQueueBeanstalkd provides an interface for a queue that implements `SlmQueue\Queue\QueueInterface` and provides in
 addition the following methods:
 
 * release(JobInterface $job, array $options = array()): when a job fails, you can add the job again to the queue
@@ -56,16 +54,16 @@ by releasing it, so that it can have another chance to be executed.
 is automatically buried.
 * kick($max): when this method is called, it will move a maximum of $max buried jobs back to the queue.
 
-A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\Tube` and a factory is available to
-create Tube. Therefore, if you want to have a tube called "email", just add the following line in your
+A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\BeanstalkdQueue` and a factory is available to
+create the queue. Therefore, if you want to have a queue called "email", just add the following line in your
 `module.config.php` file:
 
 ```php
 return array(
     'slm_queue' => array(
-        'queues' => array(
+        'queue_manager' => array(
             'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\TubeFactory'
+                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
             )
         )
     )

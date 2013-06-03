@@ -9,9 +9,9 @@ use SlmQueue\Job\JobPluginManager;
 use SlmQueue\Queue\AbstractQueue;
 
 /**
- * Tube
+ * BeanstalkdQueue
  */
-class Tube extends AbstractQueue implements TubeInterface
+class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
 {
     /**
      * @var Pheanstalk
