@@ -120,6 +120,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
      */
     public function kick($max)
     {
+        $this->pheanstalk->useTube($this->getName());
         return $this->pheanstalk->kick($max);
     }
 }
