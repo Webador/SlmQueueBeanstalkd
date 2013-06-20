@@ -2,8 +2,11 @@ SlmQueueBeanstalkd
 ==================
 
 [![Build Status](https://travis-ci.org/juriansluiman/SlmQueueBeanstalkd.png?branch=master)](https://travis-ci.org/juriansluiman/SlmQueueBeanstalkd)
+[![Latest Stable Version](https://poser.pugx.org/juriansluiman/slm-queue-beanstalkd/v/stable.png)](https://packagist.org/packages/juriansluiman/slm-queue-beanstalkd)
+[![Latest Unstable Version](https://poser.pugx.org/juriansluiman/slm-queue-beanstalkd/v/unstable.png)](https://packagist.org/packages/juriansluiman/slm-queue-beanstalkd)
 
-Version 0.2.1 Created by Jurian Sluiman and Michaël Gallego
+
+Created by Jurian Sluiman and Michaël Gallego
 
 
 Requirements
