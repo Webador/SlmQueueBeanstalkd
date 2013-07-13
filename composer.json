@@ -1,5 +1,5 @@
 {
-    "name": "juriansluiman/slm-queue-beanstalkd",
+    "name": "slm/queue-beanstalkd",
     "description": "Zend Framework 2 module that integrates with Beanstalkd queuing system",
     "type": "library",
     "keywords": [
@@ -28,7 +28,7 @@
         "zendframework/zend-mvc": "2.*",
         "zendframework/zend-servicemanager": "2.*",
         "zendframework/zend-stdlib": "2.*",
-        "juriansluiman/slm-queue": ">=0.3.0-dev",
+        "slm/queue": ">=0.3.0-dev",
         "pda/pheanstalk": "2.*"
     },
     "require-dev": {
