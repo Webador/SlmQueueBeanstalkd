@@ -2,8 +2,8 @@ SlmQueueBeanstalkd
 ==================
 
 [![Build Status](https://travis-ci.org/juriansluiman/SlmQueueBeanstalkd.png?branch=master)](https://travis-ci.org/juriansluiman/SlmQueueBeanstalkd)
-[![Latest Stable Version](https://poser.pugx.org/juriansluiman/slm-queue-beanstalkd/v/stable.png)](https://packagist.org/packages/juriansluiman/slm-queue-beanstalkd)
-[![Latest Unstable Version](https://poser.pugx.org/juriansluiman/slm-queue-beanstalkd/v/unstable.png)](https://packagist.org/packages/juriansluiman/slm-queue-beanstalkd)
+[![Latest Stable Version](https://poser.pugx.org/slm/queue-beanstalkd/v/stable.png)](https://packagist.org/packages/slm/queue-beanstalkd)
+[![Latest Unstable Version](https://poser.pugx.org/slm/queue-beanstalkd/v/unstable.png)](https://packagist.org/packages/slm/queue-beanstalkd)
 
 
 Created by Jurian Sluiman and Michaël Gallego
@@ -24,7 +24,7 @@ add the following line into your `composer.json` file:
 
 ```json
 "require": {
-	"juriansluiman/slm-queue-beanstalkd": ">=0.2"
+	"slm/queue-beanstalkd": ">=0.2"
 }
 ```
 
