@@ -32,6 +32,9 @@ class BeanstalkdWorker extends AbstractWorker
         } catch (JobException\BuryableException $exception) {
             $queue->bury($job, $exception->getOptions());
         } catch (Exception $exception) {
+            error_log('BeanstalkdWorker->processJob() unexpected exception:', 0);
+            error_log($exception->getMessage(), 0);
+            error_log($exception->getPrevious(), 0);            
             $queue->bury($job, array('priority' => Pheanstalk::DEFAULT_PRIORITY));
         }
     }
