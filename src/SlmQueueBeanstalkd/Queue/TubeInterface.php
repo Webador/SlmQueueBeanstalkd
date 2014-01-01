@@ -6,9 +6,9 @@ use SlmQueue\Job\JobInterface;
 use SlmQueue\Queue\QueueInterface;
 
 /**
- * Contract for a Beanstalkd queue
+ * Contract for a Beanstalkd queue (aka a tube)
  */
-interface BeanstalkdQueueInterface extends QueueInterface
+interface TubeInterface extends QueueInterface
 {
     /**
      * Put a job that was popped back to the queue

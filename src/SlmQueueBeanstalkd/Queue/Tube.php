@@ -11,7 +11,7 @@ use SlmQueue\Queue\AbstractQueue;
 /**
  * BeanstalkdQueue
  */
-class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
+class Tube extends AbstractQueue implements TubeInterface
 {
     /**
      * @var Pheanstalk
