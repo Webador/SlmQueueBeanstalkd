@@ -24,12 +24,12 @@ add the following line into your `composer.json` file:
 
 ```json
 "require": {
-	"slm/queue-beanstalkd": ">=0.2"
+	"slm/queue-beanstalkd": "0.3.*"
 }
 ```
 
 Then, enable the module by adding `SlmQueueBeanstalkd` in your application.config.php file. You may also want to
-configure the module: just copy the `slm_queue_beanstalkd.local.php.dist` (you can find this file in the config
+configure the module: just copy the `slm_queue_beanstalkd.global.php.dist` (you can find this file in the config
 folder of SlmQueueBeanstalkd) into your config/autoload folder, and override what you want.
 
 
@@ -57,7 +57,7 @@ by releasing it, so that it can have another chance to be executed.
 is automatically buried.
 * kick($max): when this method is called, it will move a maximum of $max buried jobs back to the queue.
 
-A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\BeanstalkdQueue` and a factory is available to
+A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\Tube` and a factory is available to
 create the queue. Therefore, if you want to have a queue called "email", just add the following line in your
 `module.config.php` file:
 
@@ -66,7 +66,7 @@ return array(
     'slm_queue' => array(
         'queue_manager' => array(
             'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
+                'newsletter' => 'SlmQueueBeanstalkd\Factory\TubeFactory'
             )
         )
     )
@@ -74,7 +74,6 @@ return array(
 ```
 
 This queue can therefore be pulled from the QueuePluginManager class.
-
 
 ### Operations on queues
 

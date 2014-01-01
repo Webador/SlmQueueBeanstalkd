@@ -14,7 +14,6 @@ class BeanstalkdOptions extends AbstractOptions
      */
     protected $connection;
 
-
     /**
      * Set the connection options
      *

@@ -1,3 +1,8 @@
+# 0.3.0
+
+- Update to SlmQueue 0.3
+- [BC] BeanstalkdQueueInterface have been renamed to TubeInterface, BeanstalkdQueue have been renamed to Tube
+
 # 0.2.1
 
 - Fix compatibilities problems with PHP 5.3

@@ -39,6 +39,6 @@ return array(
                 'port'    => 11300,
                 'timeout' => 2
             )
-        )
+        ),
     )
 );
