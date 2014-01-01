@@ -31,7 +31,7 @@ class BeanstalkdWorker extends AbstractWorker
             $job->execute();
             $queue->delete($job);
         } catch (Exception $exception) {
-            $queue->bury($job, array('priority' => Pheanstalk::DEFAULT_PRIORITY));
+            $queue->bury($job, array('priority' => $queue->getTubeOptions()->getPriority()));
         }
     }
 }

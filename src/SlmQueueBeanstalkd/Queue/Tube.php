@@ -41,6 +41,16 @@ class Tube extends AbstractQueue implements TubeInterface
     }
 
     /**
+     * Get the tube options
+     *
+     * @return TubeOptions
+     */
+    public function getTubeOptions()
+    {
+        return $this->tubeOptions;
+    }
+
+    /**
      * Valid options are:
      *      - priority: the lower the priority is, the sooner the job get popped from the queue (default to 1024)
      *      - delay: the delay in seconds before a job become available to be popped (default to 0 - no delay -)

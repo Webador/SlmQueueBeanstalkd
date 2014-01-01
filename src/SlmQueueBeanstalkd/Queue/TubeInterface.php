@@ -4,12 +4,20 @@ namespace SlmQueueBeanstalkd\Queue;
 
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Queue\QueueInterface;
+use SlmQueueBeanstalkd\Options\TubeOptions;
 
 /**
  * Contract for a Beanstalkd queue (aka a tube)
  */
 interface TubeInterface extends QueueInterface
 {
+    /**
+     * Get the tube options
+     *
+     * @return TubeOptions
+     */
+    public function getTubeOptions();
+
     /**
      * Put a job that was popped back to the queue
      *
