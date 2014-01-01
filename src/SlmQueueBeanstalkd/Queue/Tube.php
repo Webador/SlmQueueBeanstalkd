@@ -7,6 +7,7 @@ use Pheanstalk_Pheanstalk as Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Job\JobPluginManager;
 use SlmQueue\Queue\AbstractQueue;
+use SlmQueueBeanstalkd\Options\TubeOptions;
 
 /**
  * BeanstalkdQueue
@@ -19,15 +20,23 @@ class Tube extends AbstractQueue implements TubeInterface
     protected $pheanstalk;
 
     /**
+     * @var TubeOptions
+     */
+    protected $tubeOptions;
+
+    /**
      * Constructor
      *
      * @param Pheanstalk       $pheanstalk
+     * @param TubeOptions      $options
      * @param string           $name
      * @param JobPluginManager $jobPluginManager
      */
-    public function __construct(Pheanstalk $pheanstalk, $name, JobPluginManager $jobPluginManager)
+    public function __construct(Pheanstalk $pheanstalk, TubeOptions $options, $name, JobPluginManager $jobPluginManager)
     {
-        $this->pheanstalk = $pheanstalk;
+        $this->pheanstalk  = $pheanstalk;
+        $this->tubeOptions = $options;
+
         parent::__construct($name, $jobPluginManager);
     }
 
@@ -42,11 +51,11 @@ class Tube extends AbstractQueue implements TubeInterface
     public function push(JobInterface $job, array $options = array())
     {
         $identifier = $this->pheanstalk->putInTube(
-            $this->getName(),
+            $this->name,
             $job->jsonSerialize(),
-            isset($options['priority']) ? $options['priority'] : Pheanstalk::DEFAULT_PRIORITY,
-            isset($options['delay']) ? $options['delay'] : Pheanstalk::DEFAULT_DELAY,
-            isset($options['ttr']) ? $options['ttr'] : Pheanstalk::DEFAULT_TTR
+            isset($options['priority']) ? $options['priority'] : $this->tubeOptions->getPriority(),
+            isset($options['delay']) ? $options['delay'] : $this->tubeOptions->getDelay(),
+            isset($options['ttr']) ? $options['ttr'] : $this->tubeOptions->getTtr()
         );
 
         $job->setId($identifier);
@@ -63,7 +72,7 @@ class Tube extends AbstractQueue implements TubeInterface
     public function pop(array $options = array())
     {
         $job = $this->pheanstalk->reserveFromTube(
-            $this->getName(),
+            $this->name,
             isset($options['timeout']) ? $options['timeout'] : null
         );
 
@@ -95,8 +104,8 @@ class Tube extends AbstractQueue implements TubeInterface
     {
         $this->pheanstalk->release(
             $job,
-            isset($options['priority']) ? $options['priority'] : Pheanstalk::DEFAULT_PRIORITY,
-            isset($options['delay']) ? $options['delay'] : Pheanstalk::DEFAULT_DELAY
+            isset($options['priority']) ? $options['priority'] : $this->tubeOptions->getPriority(),
+            isset($options['delay']) ? $options['delay'] : $this->tubeOptions->getDelay()
         );
     }
 
@@ -110,7 +119,7 @@ class Tube extends AbstractQueue implements TubeInterface
     {
         $this->pheanstalk->bury(
             $job,
-            isset($options['priority']) ? $options['priority'] : Pheanstalk::DEFAULT_PRIORITY
+            isset($options['priority']) ? $options['priority'] : $this->tubeOptions->getPriority()
         );
     }
 
@@ -119,7 +128,8 @@ class Tube extends AbstractQueue implements TubeInterface
      */
     public function kick($max)
     {
-        $this->pheanstalk->useTube($this->getName());
+        $this->pheanstalk->useTube($this->name);
+
         return $this->pheanstalk->kick($max);
     }
 }

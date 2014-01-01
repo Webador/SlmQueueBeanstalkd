@@ -26,8 +26,6 @@ use Zend\Stdlib\AbstractOptions;
  */
 class TubeOptions extends AbstractOptions
 {
-    protected $name;
-
     /**
      * @var int
      */
@@ -42,4 +40,52 @@ class TubeOptions extends AbstractOptions
      * @var int
      */
     protected $ttr = Pheanstalk::DEFAULT_TTR;
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = (int) $priority;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param int $delay
+     */
+    public function setDelay($delay)
+    {
+        $this->delay = (int) $delay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDelay()
+    {
+        return $this->delay;
+    }
+
+    /**
+     * @param int $ttr
+     */
+    public function setTtr($ttr)
+    {
+        $this->ttr = (int) $ttr;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTtr()
+    {
+        return $this->ttr;
+    }
 }
