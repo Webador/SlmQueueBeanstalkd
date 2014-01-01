@@ -24,12 +24,12 @@ add the following line into your `composer.json` file:
 
 ```json
 "require": {
-	"slm/queue-beanstalkd": ">=0.2"
+	"slm/queue-beanstalkd": "0.3.*"
 }
 ```
 
 Then, enable the module by adding `SlmQueueBeanstalkd` in your application.config.php file. You may also want to
-configure the module: just copy the `slm_queue_beanstalkd.local.php.dist` (you can find this file in the config
+configure the module: just copy the `slm_queue_beanstalkd.global.php.dist` (you can find this file in the config
 folder of SlmQueueBeanstalkd) into your config/autoload folder, and override what you want.
 
 

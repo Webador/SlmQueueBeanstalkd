@@ -24,7 +24,6 @@ class ConnectionOptions extends AbstractOptions
      */
     protected $timeout;
 
-
     /**
      * Set the connection host
      *
@@ -33,7 +32,7 @@ class ConnectionOptions extends AbstractOptions
      */
     public function setHost($host)
     {
-        $this->host = $host;
+        $this->host = (string) $host;
     }
 
     /**

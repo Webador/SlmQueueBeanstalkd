@@ -18,7 +18,6 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
      */
     protected $pheanstalk;
 
-
     /**
      * Constructor
      *
