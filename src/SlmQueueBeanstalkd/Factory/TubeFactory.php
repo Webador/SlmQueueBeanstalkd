@@ -2,15 +2,15 @@
 
 namespace SlmQueueBeanstalkd\Factory;
 
-use SlmQueueBeanstalkd\Options\BeanstalkdQueueOptions;
-use SlmQueueBeanstalkd\Queue\BeanstalkdQueue;
+use SlmQueueBeanstalkd\Options\TubeOptions;
+use SlmQueueBeanstalkd\Queue\Tube;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * TubeFactory
  */
-class BeanstalkdQueueFactory implements FactoryInterface
+class TubeFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
@@ -25,11 +25,11 @@ class BeanstalkdQueueFactory implements FactoryInterface
         $queuesOptions = $parentLocator->get('SlmQueue\Options\ModuleOptions')->getQueues();
 
         if (isset($queuesOptions[$requestedName])) {
-            $options = new BeanstalkdQueueOptions($queuesOptions[$requestedName]);
+            $options = new TubeOptions($queuesOptions[$requestedName]);
         } else {
-            $options = new BeanstalkdQueueOptions();
+            $options = new TubeOptions();
         }
 
-        return new BeanstalkdQueue($pheanstalk, $options, $requestedName, $jobPluginManager);
+        return new Tube($pheanstalk, $options, $requestedName, $jobPluginManager);
     }
 }

@@ -9,14 +9,14 @@ use SlmQueueBeanstalkd\Options\TubeOptions;
 /**
  * Contract for a Beanstalkd queue (aka a tube)
  */
-interface BeanstalkdQueueInterface extends QueueInterface
+interface TubeInterface extends QueueInterface
 {
     /**
-     * Get the queue options
+     * Get the tube options
      *
-     * @return BeanstalkdQueueOptions
+     * @return TubeOptions
      */
-    public function getQueueOptions();
+    public function getTubeOptions();
 
     /**
      * Put a job that was popped back to the queue

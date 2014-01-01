@@ -57,7 +57,7 @@ by releasing it, so that it can have another chance to be executed.
 is automatically buried.
 * kick($max): when this method is called, it will move a maximum of $max buried jobs back to the queue.
 
-A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\BeanstalkdQueue` and a factory is available to
+A concrete class that implements this interface is included: `SlmQueueBeanstalkd\Queue\Tube` and a factory is available to
 create the queue. Therefore, if you want to have a queue called "email", just add the following line in your
 `module.config.php` file:
 
@@ -66,7 +66,7 @@ return array(
     'slm_queue' => array(
         'queue_manager' => array(
             'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
+                'newsletter' => 'SlmQueueBeanstalkd\Factory\TubeFactory'
             )
         )
     )

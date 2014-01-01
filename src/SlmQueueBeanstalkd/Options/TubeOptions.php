@@ -24,7 +24,7 @@ use Zend\Stdlib\AbstractOptions;
 /**
  * Options for a Tube
  */
-class BeanstalkdQueueOptions extends AbstractOptions
+class TubeOptions extends AbstractOptions
 {
     /**
      * @var int
