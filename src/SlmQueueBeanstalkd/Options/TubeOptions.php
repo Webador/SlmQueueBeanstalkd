@@ -18,6 +18,7 @@
 
 namespace SlmQueueBeanstalkd\Options;
 
+use Pheanstalk_Pheanstalk as Pheanstalk;
 use Zend\Stdlib\AbstractOptions;
 
 /**
@@ -25,5 +26,20 @@ use Zend\Stdlib\AbstractOptions;
  */
 class TubeOptions extends AbstractOptions
 {
+    protected $name;
 
+    /**
+     * @var int
+     */
+    protected $priority = Pheanstalk::DEFAULT_PRIORITY;
+
+    /**
+     * @var int
+     */
+    protected $delay = Pheanstalk::DEFAULT_DELAY;
+
+    /**
+     * @var int
+     */
+    protected $ttr = Pheanstalk::DEFAULT_TTR;
 }
