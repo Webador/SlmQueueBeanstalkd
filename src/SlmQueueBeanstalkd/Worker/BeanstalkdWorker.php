@@ -7,7 +7,7 @@ use Pheanstalk_Pheanstalk as Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Queue\QueueInterface;
 use SlmQueue\Worker\AbstractWorker;
-use SlmQueueBeanstalkd\Queue\TubeInterface;
+use SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface;
 use SlmQueueBeanstalkd\Worker\Exception\InvalidQueueException;
 
 /**
@@ -20,9 +20,9 @@ class BeanstalkdWorker extends AbstractWorker
      */
     public function processJob(JobInterface $job, QueueInterface $queue)
     {
-        if (!$queue instanceof TubeInterface) {
+        if (!$queue instanceof BeanstalkdQueueInterface) {
             throw new InvalidQueueException(sprintf(
-                'Invalid queue type given, expected a SlmQueueBeanstalkd\Queue\TubeInterface, %s given',
+                'Invalid queue type given, expected a SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface, %s given',
                 get_class($queue)
             ));
         }
