@@ -55,38 +55,6 @@ class BeanstalkdWorkerTest extends TestCase
         $this->assertEquals('deleted', $job->getContent());
     }
 
-    public function testAssertJobIsReleasedIfReleasableExceptionIsThrown()
-    {
-        $job = new Asset\ReleasableJob();
-
-        $this->queueMock->expects($this->once())
-            ->method('release')
-            ->will($this->returnCallback(function() use ($job) {
-                $job->setContent('released');
-            })
-        );
-
-        $this->worker->processJob($job, $this->queueMock);
-
-        $this->assertEquals('released', $job->getContent());
-    }
-
-    public function testAssertJobIsBuriedIfBuryableExceptionIsThrown()
-    {
-        $job = new Asset\BuryableJob();
-
-        $this->queueMock->expects($this->once())
-            ->method('bury')
-            ->will($this->returnCallback(function() use ($job) {
-                $job->setContent('buried');
-            })
-        );
-
-        $this->worker->processJob($job, $this->queueMock);
-
-        $this->assertEquals('buried', $job->getContent());
-    }
-
     public function testAssertJobIsBuriedIfAnyExceptionIsThrown()
     {
         $job = new Asset\ExceptionJob();
