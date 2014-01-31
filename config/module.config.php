@@ -5,7 +5,7 @@ return array(
         'factories' => array(
             'SlmQueueBeanstalkd\Options\BeanstalkdOptions' => 'SlmQueueBeanstalkd\Factory\BeanstalkdOptionsFactory',
             'SlmQueueBeanstalkd\Service\PheanstalkService' => 'SlmQueueBeanstalkd\Factory\PheanstalkFactory',
-            'SlmQueueBeanstalkd\Worker\BeanstalkdWorker'   => 'SlmQueueBeanstalkd\Factory\BeanstalkdWorkerFactory'
+            'SlmQueueBeanstalkd\Worker\BeanstalkdWorker'   => 'SlmQueue\Factory\WorkerFactory'
         )
     ),
 
