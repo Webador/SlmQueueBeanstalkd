@@ -33,7 +33,8 @@
         "pda/pheanstalk": "2.*"
     },
     "require-dev": {
-        "zendframework/zendframework": "2.*"
+        "zendframework/zendframework": "2.*",
+        "squizlabs/php_codesniffer": "1.5.*"
     },
     "extra": {
         "branch-alias": {
