@@ -29,7 +29,7 @@
         "zendframework/zend-mvc": "2.*",
         "zendframework/zend-servicemanager": "2.*",
         "zendframework/zend-stdlib": "2.*",
-        "slm/queue": ">=0.3.0-dev",
+        "slm/queue": "0.3.*",
         "pda/pheanstalk": "2.*"
     },
     "require-dev": {
@@ -38,7 +38,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.3.x-dev"
+            "dev-master": "0.4.x-dev"
         }
     },
     "autoload": {
