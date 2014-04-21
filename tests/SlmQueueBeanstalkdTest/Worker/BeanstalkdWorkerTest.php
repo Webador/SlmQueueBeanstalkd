@@ -76,7 +76,10 @@ class BeanstalkdWorkerTest extends TestCase
         $queue = $this->getMock('SlmQueue\Queue\QueueInterface');
         $job   = new Asset\SimpleJob();
 
-        $this->setExpectedException('SlmQueueBeanstalkd\Exception\ExceptionInterface');
-        $this->worker->processJob($job, $queue);
+        try {
+            $this->worker->processJob($job, $queue);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf('SlmQueueBeanstalkd\Exception\ExceptionInterface', $e);
+        }
     }
 }
