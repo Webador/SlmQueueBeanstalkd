@@ -1,6 +1,6 @@
 <?php
 
-namespace SlmBeanstalkdQueue\Exception;
+namespace SlmQueueBeanstalkd\Exception;
 
 use SlmQueue\Exception\ExceptionInterface as BaseExceptionInterface;
 
