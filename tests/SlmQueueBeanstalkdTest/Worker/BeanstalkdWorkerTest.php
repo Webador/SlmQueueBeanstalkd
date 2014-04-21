@@ -70,4 +70,13 @@ class BeanstalkdWorkerTest extends TestCase
 
         $this->assertEquals('buried', $job->getContent());
     }
+
+    public function testOnlyBeanstalkdQueuesAreAllowed()
+    {
+        $queue = $this->getMock('SlmQueue\Queue\QueueInterface');
+        $job   = new Asset\SimpleJob();
+
+        $this->setExpectedException('SlmQueueBeanstalkd\Exception\ExceptionInterface');
+        $this->worker->processJob($job, $queue);
+    }
 }
