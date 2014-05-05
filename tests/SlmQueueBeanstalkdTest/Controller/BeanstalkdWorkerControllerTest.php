@@ -50,7 +50,7 @@ class BeanstalkdWorkerControllerTest extends TestCase
         $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
-        $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"s:3:\"Foo\";"}');
+        $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"s:3:\"Foo\";","metadata":[]}');
 
         $this->pheanstalkMock->expects($this->once())
              ->method('reserveFromTube')

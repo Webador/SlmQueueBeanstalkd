@@ -72,9 +72,10 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
             return null;
         }
 
-        $data = json_decode($job->getData(), true);
+        $data     = json_decode($job->getData(), true);
+        $metadata = array('id' => $job->getId()) + $data['metadata'];
 
-        return $this->createJob($data['class'], $data['content'], array('id' => $job->getId()));
+        return $this->createJob($data['class'], $data['content'], $metadata);
     }
 
     /**
