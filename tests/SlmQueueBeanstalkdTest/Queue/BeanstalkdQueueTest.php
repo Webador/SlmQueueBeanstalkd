@@ -50,9 +50,6 @@ class BeanstalkdQueueTest extends TestCase
         $this->assertEquals($result, $maxKick);
     }
 
-    /**
-     * @group metadata
-     */
     public function testPopPreservesMetadata()
     {
         $pheanstalk     = $this->pheanstalk;
