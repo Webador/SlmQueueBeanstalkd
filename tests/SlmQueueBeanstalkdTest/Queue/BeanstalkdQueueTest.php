@@ -59,12 +59,12 @@ class BeanstalkdQueueTest extends TestCase
         $job            = new SimpleJob;
         $job->setMetadata('foo', 'bar');
 
-        $pheanstalk_job = new Pheanstalk_Job(1, $job->jsonSerialize());
+        $pheanstalkJob = new Pheanstalk_Job(1, $this->queue->serializeJob($job));
 
         $pheanstalk->expects($this->once())
                    ->method('reserveFromTube')
                    ->with($this->equalTo($queueName))
-                   ->will($this->returnValue($pheanstalk_job));
+                   ->will($this->returnValue($pheanstalkJob));
 
         $pluginManager->expects($this->once())
                       ->method('get')

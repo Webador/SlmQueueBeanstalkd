@@ -7,6 +7,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 use SlmQueueBeanstalkdTest\Util\ServiceManagerFactory;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\ServiceManager\ServiceManager;
+use SlmQueueBeanstalkdTest\Asset\SimpleJob;
 
 class BeanstalkdWorkerControllerTest extends TestCase
 {
@@ -29,7 +30,7 @@ class BeanstalkdWorkerControllerTest extends TestCase
         $this->pheanstalkMock = $this->getMock('Pheanstalk_Pheanstalk', array(), array(), '', false);
         $this->serviceManager->setAllowOverride(true);
         $pheanstalk = $this->pheanstalkMock;
-        $this->serviceManager->setFactory('SlmQueueBeanstalkd\Service\PheanstalkService', function() use ($pheanstalk) {
+        $this->serviceManager->setFactory('SlmQueueBeanstalkd\Service\PheanstalkService', function () use ($pheanstalk) {
             return $pheanstalk;
         });
     }
@@ -50,7 +51,9 @@ class BeanstalkdWorkerControllerTest extends TestCase
         $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
-        $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"s:3:\"Foo\";","metadata":[]}');
+        $job = new SimpleJob;
+        $string = $this->serviceManager->get('SlmQueue\Queue\QueuePluginManager')->get('newsletter')->serializeJob($job);
+        $pheanstalkJob = new Pheanstalk_Job(4, $string);
 
         $this->pheanstalkMock->expects($this->once())
              ->method('reserveFromTube')
