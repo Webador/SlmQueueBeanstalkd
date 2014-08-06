@@ -16,9 +16,9 @@ class BeanstalkdWorkerControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $worker = $serviceLocator->getServiceLocator()
-                                 ->get('SlmQueueBeanstalkd\Worker\BeanstalkdWorker');
+        $worker  = $serviceLocator->getServiceLocator()->get('SlmQueueBeanstalkd\Worker\BeanstalkdWorker');
+        $manager = $serviceLocator->getServiceLocator()->get('SlmQueue\Queue\QueuePluginManager');
 
-        return new BeanstalkdWorkerController($worker);
+        return new BeanstalkdWorkerController($worker, $manager);
     }
 }
