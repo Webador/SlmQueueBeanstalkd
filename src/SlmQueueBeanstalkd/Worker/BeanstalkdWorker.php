@@ -30,8 +30,10 @@ class BeanstalkdWorker extends AbstractWorker
         try {
             $job->execute();
             $queue->delete($job);
+            return static::JOB_SUCCESSFUL;
         } catch (Exception $exception) {
             $queue->bury($job, array('priority' => Pheanstalk::DEFAULT_PRIORITY));
+            return static::JOB_FAILED;
         }
     }
 }
