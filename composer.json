@@ -24,12 +24,13 @@
             "homepage": "http://www.michaelgallego.fr"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
-        "slm/queue": "0.4.0",
+        "slm/queue": "0.4.*",
         "pda/pheanstalk": "2.*"
     },
     "require-dev": {
