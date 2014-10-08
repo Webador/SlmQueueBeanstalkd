@@ -44,7 +44,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
     {
         $identifier = $this->pheanstalk->putInTube(
             $this->getName(),
-            $job->jsonSerialize(),
+            $this->serializeJob($job),
             isset($options['priority']) ? $options['priority'] : Pheanstalk::DEFAULT_PRIORITY,
             isset($options['delay']) ? $options['delay'] : Pheanstalk::DEFAULT_DELAY,
             isset($options['ttr']) ? $options['ttr'] : Pheanstalk::DEFAULT_TTR
@@ -72,10 +72,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
             return null;
         }
 
-        $data     = json_decode($job->getData(), true);
-        $metadata = array('id' => $job->getId()) + $data['metadata'];
-
-        return $this->createJob($data['class'], $data['content'], $metadata);
+        return $this->unserializeJob($job->getData(), array('id' => $job->getId()));
     }
 
     /**
