@@ -35,16 +35,6 @@ class BeanstalkdWorkerControllerTest extends TestCase
         });
     }
 
-    public function testThrowExceptionIfQueueIsUnknown()
-    {
-        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
-        $routeMatch = new RouteMatch(array('queue' => 'unknown'));
-        $controller->getEvent()->setRouteMatch($routeMatch);
-
-        $this->setExpectedException('Zend\ServiceManager\Exception\ServiceNotFoundException');
-        $result = $controller->processAction();
-    }
-
     public function testCorrectlyCountJobs()
     {
         $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
