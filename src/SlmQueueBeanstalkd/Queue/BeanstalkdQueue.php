@@ -72,7 +72,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
             return null;
         }
 
-        return $this->unserializeJob($job->getData(), array('id' => $job->getId()));
+        return $this->unserializeJob($job->getData(), array('__id__' => $job->getId()));
     }
 
     /**
