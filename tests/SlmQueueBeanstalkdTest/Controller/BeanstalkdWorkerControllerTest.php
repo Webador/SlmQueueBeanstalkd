@@ -2,7 +2,6 @@
 
 namespace SlmQueueBeanstalkdTest\Controller;
 
-use Pheanstalk_Job;
 use PHPUnit_Framework_TestCase as TestCase;
 use SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController;
 use SlmQueueBeanstalkdTest\Util\ServiceManagerFactory;

@@ -2,7 +2,7 @@
 
 namespace SlmQueueBeanstalkd\Factory;
 
-use Pheanstalk_Pheanstalk as Pheanstalk;
+use Pheanstalk\Pheanstalk;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

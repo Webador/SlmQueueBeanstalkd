@@ -2,8 +2,8 @@
 
 namespace SlmQueueBeanstalkd\Queue;
 
-use Pheanstalk_Job;
-use Pheanstalk_Pheanstalk as Pheanstalk;
+use Pheanstalk\Job as PheanstalkJob;
+use Pheanstalk\Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Job\JobPluginManager;
 use SlmQueue\Queue\AbstractQueue;
@@ -68,7 +68,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
             isset($options['timeout']) ? $options['timeout'] : null
         );
 
-        if (!$job instanceof Pheanstalk_Job) {
+        if (!$job instanceof PheanstalkJob) {
             return null;
         }
 

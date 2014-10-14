@@ -2,10 +2,10 @@
 
 namespace SlmQueueBeanstalkdTest\Queue;
 
+use Pheanstalk\Job as PheanstalkJob;
 use PHPUnit_Framework_TestCase as TestCase;
 use SlmQueueBeanstalkd\Queue\BeanstalkdQueue;
 use SlmQueueBeanstalkdTest\Asset\SimpleJob;
-use Pheanstalk_Job;
 
 /**
  * BeanstalkdQueue Test
@@ -19,7 +19,7 @@ class BeanstalkdQueueTest extends TestCase
     public function setUp()
     {
         $this->queueName  = 'testQueueName';
-        $this->pheanstalk = $this->getMockBuilder('Pheanstalk_Pheanstalk')
+        $this->pheanstalk = $this->getMockBuilder('Pheanstalk\Pheanstalk')
                                  ->disableOriginalConstructor()
                                  ->getMock();
 
@@ -59,7 +59,7 @@ class BeanstalkdQueueTest extends TestCase
         $job            = new SimpleJob;
         $job->setMetadata('foo', 'bar');
 
-        $pheanstalkJob = new Pheanstalk_Job(1, $this->queue->serializeJob($job));
+        $pheanstalkJob = new PheanstalkJob(1, $this->queue->serializeJob($job));
 
         $pheanstalk->expects($this->once())
                    ->method('reserveFromTube')
