@@ -29,7 +29,7 @@
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
-        "slm/queue": "~0.4",
+        "slm/queue": "0.4.*",
         "pda/pheanstalk": "~3.0"
     },
     "require-dev": {
