@@ -2,64 +2,35 @@
 
 namespace SlmQueueBeanstalkdTest\Controller;
 
-use Pheanstalk_Job;
 use PHPUnit_Framework_TestCase as TestCase;
-use SlmQueueBeanstalkdTest\Util\ServiceManagerFactory;
+use SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\ServiceManager\ServiceManager;
 
 class BeanstalkdWorkerControllerTest extends TestCase
 {
-    /**
-     * @var ServiceManager
-     */
-    protected $serviceManager;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Pheanstalk_Pheanstalk
-     */
-    protected $pheanstalkMock;
-
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->serviceManager = ServiceManagerFactory::getServiceManager();
-
-        $this->pheanstalkMock = $this->getMock('Pheanstalk_Pheanstalk', array(), array(), '', false);
-        $this->serviceManager->setAllowOverride(true);
-        $pheanstalk = $this->pheanstalkMock;
-        $this->serviceManager->setFactory('SlmQueueBeanstalkd\Service\PheanstalkService', function() use ($pheanstalk) {
-            return $pheanstalk;
-        });
-    }
-
-    public function testThrowExceptionIfQueueIsUnknown()
-    {
-        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
-        $routeMatch = new RouteMatch(array('queue' => 'unknown'));
-        $controller->getEvent()->setRouteMatch($routeMatch);
-
-        $this->setExpectedException('Zend\ServiceManager\Exception\ServiceNotFoundException');
-        $result = $controller->processAction();
-    }
-
     public function testCorrectlyCountJobs()
     {
-        $controller = $this->serviceManager->get('ControllerLoader')->get('SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController');
+        $queue         = $this->getMock('SlmQueue\Queue\QueueInterface');
+        $worker        = $this->getMock('SlmQueue\Worker\WorkerInterface');
+        $pluginManager = $this->getMock('SlmQueue\Queue\QueuePluginManager', array(), array(), '', false);
+
+        $pluginManager->expects($this->once())
+                      ->method('get')
+                      ->with('newsletter')
+                      ->will($this->returnValue($queue));
+
+        $controller    = new BeanstalkdWorkerController($worker, $pluginManager);
+
         $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
         $controller->getEvent()->setRouteMatch($routeMatch);
 
-        $pheanstalkJob = new Pheanstalk_Job(4, '{"class":"SlmQueueBeanstalkdTest\\\Asset\\\SimpleJob","content":"s:3:\"Foo\";","metadata":[]}');
-
-        $this->pheanstalkMock->expects($this->once())
-             ->method('reserveFromTube')
-             ->will($this->returnValue($pheanstalkJob));
+        $worker->expects($this->once())
+               ->method('processQueue')
+               ->with($queue)
+               ->will($this->returnValue(array('One state')));
 
         $result = $controller->processAction();
 
-        $this->assertContains('newsletter', $result);
-        $this->assertContains('finished', strtolower($result));
-        $this->assertContains('1', $result);
+        $this->assertStringEndsWith("One state\n", $result);
     }
 }

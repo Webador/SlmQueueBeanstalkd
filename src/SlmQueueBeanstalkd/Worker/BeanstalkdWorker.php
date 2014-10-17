@@ -3,12 +3,11 @@
 namespace SlmQueueBeanstalkd\Worker;
 
 use Exception;
-use Pheanstalk_Pheanstalk as Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Queue\QueueInterface;
 use SlmQueue\Worker\AbstractWorker;
+use SlmQueue\Worker\WorkerEvent;
 use SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface;
-use SlmQueueBeanstalkd\Worker\Exception\InvalidQueueException;
 
 /**
  * Worker for Beanstalkd
@@ -21,17 +20,23 @@ class BeanstalkdWorker extends AbstractWorker
     public function processJob(JobInterface $job, QueueInterface $queue)
     {
         if (!$queue instanceof BeanstalkdQueueInterface) {
-            throw new InvalidQueueException(sprintf(
-                'Invalid queue type given, expected a SlmQueueBeanstalkd\Queue\BeanstalkdQueueInterface, %s given',
-                get_class($queue)
-            ));
+            return WorkerEvent::JOB_STATUS_UNKNOWN;
         }
 
+        /**
+         * In Beanstalkd, if an error occurs (exception for instance), the job
+         * is automatically reinserted into the queue after a configured delay
+         * (the "visibility_timeout" option). If the job executed correctly, it
+         * must explicitly be removed
+         */
         try {
             $job->execute();
             $queue->delete($job);
+
+            return WorkerEvent::JOB_STATUS_SUCCESS;
         } catch (Exception $exception) {
-            $queue->bury($job, array('priority' => Pheanstalk::DEFAULT_PRIORITY));
+            // Do nothing, the job will be reinserted automatically for another try
+            return WorkerEvent::JOB_STATUS_FAILURE_RECOVERABLE;
         }
     }
 }
