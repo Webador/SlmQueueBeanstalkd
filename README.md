@@ -24,7 +24,7 @@ add the following line into your `composer.json` file:
 
 ```json
 "require": {
-	"slm/queue-beanstalkd": ">=0.2"
+	"slm/queue-beanstalkd": "0.4.*"
 }
 ```
 
