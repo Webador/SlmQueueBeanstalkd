@@ -42,7 +42,7 @@ class Module implements
      */
     public function getConsoleBanner(AdapterInterface $console)
     {
-        return 'SlmQueueBeanstalkd ' . Version::VERSION;
+        return 'SlmQueueBeanstalkd';
     }
 
     /**
