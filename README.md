@@ -66,7 +66,7 @@ return array(
     'slm_queue' => array(
         'queue_manager' => array(
             'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
+                'email' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
             )
         )
     )
