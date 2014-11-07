@@ -30,7 +30,7 @@
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
         "slm/queue": "0.4.*",
-        "pda/pheanstalk": "dev-master#21e8ec199ba52afa5dbcefbad142780542f5c8ee"
+        "jhammer/pheanstalk": "dev-master#21e8ec199ba52afa5dbcefbad142780542f5c8ee"
     },
     "require-dev": {
         "zendframework/zendframework": "~2.2",
