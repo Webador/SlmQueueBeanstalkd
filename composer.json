@@ -53,7 +53,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/jhammer/pheanstalk"
+            "url": "https://github.com/jhammer/pheanstalk.git"
         }
     ]
 }
