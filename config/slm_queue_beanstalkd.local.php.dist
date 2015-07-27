@@ -11,12 +11,6 @@ return array(
          * Configuration for Beanstalkd
          */
         'beanstalkd' => array(
-            /**
-             * Beanstalkd tubes that should be used for queues
-             */
-            'tubes' => array(
-                // 'my-queue' => 'beanstalkd-tube-for-my-queue'
-            ),
             'connection' => array(
                 /**
                  * Connection host
@@ -35,5 +29,12 @@ return array(
                 // 'timeout' => 2
             ),
         ),
+        /**
+         * Beanstalkd tubes that should be used for queues
+         */
+        'queues' => array(
+            // 'my-queue' => array('tube' => 'beanstalkd-tube-for-my-queue'),
+        ),
+
     ),
 );
