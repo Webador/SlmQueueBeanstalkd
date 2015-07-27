@@ -9,7 +9,7 @@ class QueueOptions extends AbstractOptions
     /**
      * @var string
      */
-    protected $tube;
+    protected $tube = '';
 
     /**
      * Get beanstalkd tube name for queue

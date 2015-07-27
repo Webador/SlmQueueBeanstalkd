@@ -35,8 +35,7 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
     {
         $this->pheanstalk = $pheanstalk;
         $this->tubeName = $name;
-        if (($options !== null) && (!empty($options->getTube())))
-        {
+        if (($options !== null) && $options->getTube()) {
             $this->tubeName = $options->getTube();
         }
         parent::__construct($name, $jobPluginManager);
