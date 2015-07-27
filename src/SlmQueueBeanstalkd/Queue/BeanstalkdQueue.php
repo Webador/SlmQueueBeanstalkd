@@ -7,6 +7,7 @@ use Pheanstalk\Pheanstalk;
 use SlmQueue\Job\JobInterface;
 use SlmQueue\Job\JobPluginManager;
 use SlmQueue\Queue\AbstractQueue;
+use SlmQueueBeanstalkd\Options\QueueOptions;
 
 /**
  * BeanstalkdQueue
@@ -30,10 +31,14 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
      * @param string           $name
      * @param JobPluginManager $jobPluginManager
      */
-    public function __construct(Pheanstalk $pheanstalk, $name, JobPluginManager $jobPluginManager, $tubeName = null)
+    public function __construct(Pheanstalk $pheanstalk, $name, JobPluginManager $jobPluginManager, QueueOptions $options = null)
     {
         $this->pheanstalk = $pheanstalk;
-        $this->tubeName = (empty($tubeName)? $name : $tubeName);
+        $this->tubeName = $name;
+        if (($options !== null) && (!empty($options->getTube())))
+        {
+            $this->tubeName = $options->getTube();
+        }
         parent::__construct($name, $jobPluginManager);
     }
 

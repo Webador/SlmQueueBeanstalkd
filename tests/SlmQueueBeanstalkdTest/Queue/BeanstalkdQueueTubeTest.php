@@ -4,6 +4,7 @@ namespace SlmQueueBeanstalkdTest\Queue;
 
 use Pheanstalk\Job as PheanstalkJob;
 use PHPUnit_Framework_TestCase as TestCase;
+use SlmQueueBeanstalkd\Options\QueueOptions;
 use SlmQueueBeanstalkd\Queue\BeanstalkdQueue;
 use SlmQueueBeanstalkdTest\Asset\SimpleJob;
 
@@ -45,7 +46,10 @@ class BeanstalkdQueueTubeTest extends TestCase
                                     ->disableOriginalConstructor()
                                     ->getMock();
 
-        $this->queue = new BeanstalkdQueue($this->pheanstalk, $this->queueName, $this->pluginManager, $this->tubeName);
+        $queueOptions = new QueueOptions();
+        $queueOptions->setTube($this->tubeName);
+
+        $this->queue = new BeanstalkdQueue($this->pheanstalk, $this->queueName, $this->pluginManager, $queueOptions);
     }
 
     public function testTubeNameGetter()
