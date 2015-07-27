@@ -8,17 +8,35 @@ use SlmQueueBeanstalkd\Queue\BeanstalkdQueue;
 use SlmQueueBeanstalkdTest\Asset\SimpleJob;
 
 /**
- * BeanstalkdQueue Test
+ * BeanstalkdQueue Test for custom tube name
  */
-class BeanstalkdQueueTest extends TestCase
+class BeanstalkdQueueTubeTest extends TestCase
 {
+    /**
+     * @var string
+     */
     protected $queueName;
+    /**
+     * @var string
+     */
+    protected $tubeName;
+    /**
+     * @var BeanstalkdQueue
+     */
+    protected $queue;
+    /**
+     * @var \Pheanstalk\Pheanstalk|\PHPUnit_Framework_MockObject_MockObject
+     */
     protected $pheanstalk;
+    /**
+     * @var \SlmQueue\Job\JobPluginManager|\PHPUnit_Framework_MockObject_MockObject
+     */
     protected $pluginManager;
 
     public function setUp()
     {
         $this->queueName  = 'testQueueName';
+        $this->tubeName  = 'testQueueTubeName';
         $this->pheanstalk = $this->getMockBuilder('Pheanstalk\Pheanstalk')
                                  ->disableOriginalConstructor()
                                  ->getMock();
@@ -27,12 +45,12 @@ class BeanstalkdQueueTest extends TestCase
                                     ->disableOriginalConstructor()
                                     ->getMock();
 
-        $this->queue = new BeanstalkdQueue($this->pheanstalk, $this->queueName, $this->pluginManager);
+        $this->queue = new BeanstalkdQueue($this->pheanstalk, $this->queueName, $this->pluginManager, $this->tubeName);
     }
 
     public function testTubeNameGetter()
     {
-        $tubeName = $this->queueName;
+        $tubeName = $this->tubeName;
         $result = $this->queue->getTubeName();
         $this->assertEquals($result, $tubeName);
     }
@@ -40,12 +58,12 @@ class BeanstalkdQueueTest extends TestCase
     public function testSuccessfulKickWithSelectedTube()
     {
         $maxKick    = 10;
-        $queueName  = $this->queueName;
+        $tubeName  = $this->tubeName;
         $pheanstalk = $this->pheanstalk;
 
         $pheanstalk->expects($this->once())
                    ->method('useTube')
-                   ->with($this->equalTo($queueName))
+                   ->with($this->equalTo($tubeName))
                    ->will($this->returnValue($pheanstalk));
 
         $pheanstalk->expects($this->once())
@@ -60,7 +78,7 @@ class BeanstalkdQueueTest extends TestCase
     public function testPopPreservesMetadata()
     {
         $pheanstalk     = $this->pheanstalk;
-        $queueName      = $this->queueName;
+        $tubeName      = $this->tubeName;
         $pluginManager  = $this->pluginManager;
 
         $job            = new SimpleJob;
@@ -70,7 +88,7 @@ class BeanstalkdQueueTest extends TestCase
 
         $pheanstalk->expects($this->once())
                    ->method('reserveFromTube')
-                   ->with($this->equalTo($queueName))
+                   ->with($this->equalTo($tubeName))
                    ->will($this->returnValue($pheanstalkJob));
 
         $pluginManager->expects($this->once())

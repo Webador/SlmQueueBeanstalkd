@@ -14,6 +14,10 @@ class BeanstalkdOptions extends AbstractOptions
      */
     protected $connection;
 
+    /**
+     * @var array
+     */
+    protected $tubes = [];
 
     /**
      * Set the connection options
@@ -33,5 +37,23 @@ class BeanstalkdOptions extends AbstractOptions
     public function getConnection()
     {
         return $this->connection;
+    }
+
+    /**
+     * Set beanstalkd tube names to use for queues
+     * @param array $tubes
+     */
+    public function setTubes(array $tubes)
+    {
+        $this->tubes = $tubes;
+    }
+
+    /**
+     * Get beanstalkd tube names to use for queues
+     * @return array
+     */
+    public function getTubes()
+    {
+        return $this->tubes;
     }
 }
