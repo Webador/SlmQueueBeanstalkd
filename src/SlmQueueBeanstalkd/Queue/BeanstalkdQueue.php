@@ -31,8 +31,12 @@ class BeanstalkdQueue extends AbstractQueue implements BeanstalkdQueueInterface
      * @param string           $name
      * @param JobPluginManager $jobPluginManager
      */
-    public function __construct(Pheanstalk $pheanstalk, $name, JobPluginManager $jobPluginManager, QueueOptions $options = null)
-    {
+    public function __construct(
+        Pheanstalk $pheanstalk,
+        $name,
+        JobPluginManager $jobPluginManager,
+        QueueOptions $options = null
+    ) {
         $this->pheanstalk = $pheanstalk;
         $this->tubeName = $name;
         if (($options !== null) && $options->getTube()) {
