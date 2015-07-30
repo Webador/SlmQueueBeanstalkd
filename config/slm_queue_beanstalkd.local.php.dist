@@ -29,5 +29,12 @@ return array(
                 // 'timeout' => 2
             ),
         ),
+        /**
+         * Beanstalkd tubes that should be used for queues
+         */
+        'queues' => array(
+            // 'my-queue' => array('tube' => 'beanstalkd-tube-for-my-queue'),
+        ),
+
     ),
 );
