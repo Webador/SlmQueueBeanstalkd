@@ -29,18 +29,13 @@
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
-        "slm/queue": "0.4.*",
+        "slm/queue": "~0.6",
         "pda/pheanstalk": "~3.0"
     },
     "require-dev": {
         "zendframework/zendframework": "~2.2",
         "squizlabs/php_codesniffer": "1.5.*",
         "phpunit/phpunit": "~4.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.4.x-dev"
-        }
     },
     "autoload": {
         "psr-0": {
