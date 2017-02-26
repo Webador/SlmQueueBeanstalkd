@@ -1,10 +1,13 @@
 <?php
+/**
+ * Copyright (c) 2017 Geil.PM
+ */
 
 namespace SlmQueueBeanstalkd\Factory;
 
 use SlmQueueBeanstalkd\Options\BeanstalkdOptions;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+use Interop\Container\ContainerInterface;
 
 class BeanstalkdOptionsFactory implements FactoryInterface
 {
@@ -13,7 +16,15 @@ class BeanstalkdOptionsFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Config');
-        return new BeanstalkdOptions($config['slm_queue']['beanstalkd']);
     }
+
+
+	public function __invoke(
+		ContainerInterface $container,
+		$requestedName,
+		array $options = null
+	) {
+		$config = $container->get('Config');
+		return new BeanstalkdOptions($config['slm_queue']['beanstalkd']);
+	}
 }
