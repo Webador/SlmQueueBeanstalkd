@@ -11,14 +11,6 @@ use Interop\Container\ContainerInterface;
 
 class BeanstalkdOptionsFactory implements FactoryInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-    }
-
-
 	public function __invoke(
 		ContainerInterface $container,
 		$requestedName,
