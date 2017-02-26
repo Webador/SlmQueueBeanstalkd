@@ -26,7 +26,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "slm/queue": "0.4.*",
+        "slm/queue": "*",
         "pda/pheanstalk": "~3.0"
     },
     "require-dev": {
