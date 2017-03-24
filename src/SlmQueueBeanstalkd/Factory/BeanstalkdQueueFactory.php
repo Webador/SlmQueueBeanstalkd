@@ -26,8 +26,8 @@ class BeanstalkdQueueFactory implements FactoryInterface
     /**
      * Returns custom beanstalkd options for specified queue
      *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @param string                  $queueName
+     * @param ContainerInterface $serviceLocator
+     * @param string $queueName
      *
      * @return QueueOptions
      */
