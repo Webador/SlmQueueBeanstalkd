@@ -4,7 +4,8 @@ namespace SlmQueueBeanstalkdTest\Controller;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController;
-use Zend\Mvc\Router\RouteMatch;
+use Zend\Mvc\Router\RouteMatch as DeprecatedRouteMatch;
+use Zend\Router\RouteMatch;
 
 class BeanstalkdWorkerControllerTest extends TestCase
 {
@@ -21,7 +22,8 @@ class BeanstalkdWorkerControllerTest extends TestCase
 
         $controller    = new BeanstalkdWorkerController($worker, $pluginManager);
 
-        $routeMatch = new RouteMatch(array('queue' => 'newsletter'));
+        $routeMatch = $this->createRouteMatch();
+        $routeMatch->setParam('queue', 'newsletter');
         $controller->getEvent()->setRouteMatch($routeMatch);
 
         $worker->expects($this->once())
@@ -32,5 +34,14 @@ class BeanstalkdWorkerControllerTest extends TestCase
         $result = $controller->processAction();
 
         $this->assertStringEndsWith("One state\n", $result);
+    }
+
+    private function createRouteMatch()
+    {
+        if (class_exists(DeprecatedRouteMatch::class)) {
+            return new DeprecatedRouteMatch([]);
+        }
+
+        return new RouteMatch([]);
     }
 }
