@@ -13,6 +13,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  */
 class PheanstalkFactory implements FactoryInterface
 {
+
     /**
      * {@inheritDoc}
      */
@@ -24,7 +25,8 @@ class PheanstalkFactory implements FactoryInterface
     /**
      * @inheritdoc
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null) {
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
         /** @var $beanstalkdOptions \SlmQueueBeanstalkd\Options\BeanstalkdOptions */
         $beanstalkdOptions = $container->get(BeanstalkdOptions::class);
         $connectionOptions = $beanstalkdOptions->getConnection();
@@ -34,4 +36,5 @@ class PheanstalkFactory implements FactoryInterface
             $connectionOptions->getPort(),
             $connectionOptions->getTimeout()
         );
-}}
+    }
+}
