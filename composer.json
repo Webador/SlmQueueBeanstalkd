@@ -1,53 +1,57 @@
 {
-    "name": "slm/queue-beanstalkd",
-    "description": "Zend Framework 2 module that integrates with Beanstalkd queuing system",
-    "license": "BSD-3-Clause",
-    "type": "library",
-    "keywords": [
-        "zf2",
-        "queue",
-        "job",
-        "beanstalk",
-        "beanstalkd",
-        "pheanstalk"
-    ],
-    "homepage": "https://github.com/juriansluiman/SlmQueueBeanstalkd",
-    "authors": [
-        {
-            "name": "Jurian Sluiman",
-            "email": "jurian@juriansluiman.nl",
-            "homepage": "http://juriansluiman.nl"
-        },
-        {
-            "name": "Michaël Gallego",
-            "email": "mic.gallego@gmail.com",
-            "homepage": "http://www.michaelgallego.fr"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "zendframework/zend-mvc": "~2.2",
-        "zendframework/zend-servicemanager": "~2.2",
-        "zendframework/zend-stdlib": "~2.2",
-        "slm/queue": "0.4.*",
-        "pda/pheanstalk": "~3.0"
+  "name": "slm/queue-beanstalkd",
+  "description": "Zend Framework 2 module that integrates with Beanstalkd queuing system",
+  "license": "BSD-3-Clause",
+  "type": "library",
+  "keywords": [
+    "zf2",
+    "queue",
+    "job",
+    "beanstalk",
+    "beanstalkd",
+    "pheanstalk"
+  ],
+  "homepage": "https://github.com/juriansluiman/SlmQueueBeanstalkd",
+  "authors": [
+    {
+      "name": "Jurian Sluiman",
+      "email": "jurian@juriansluiman.nl",
+      "homepage": "http://juriansluiman.nl"
     },
-    "require-dev": {
-        "zendframework/zendframework": "~2.2",
-        "squizlabs/php_codesniffer": "1.5.*",
-        "phpunit/phpunit": "~4.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.4.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-0": {
-            "SlmQueueBeanstalkd": "src/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
+    {
+      "name": "Michaël Gallego",
+      "email": "mic.gallego@gmail.com",
+      "homepage": "http://www.michaelgallego.fr"
     }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "zendframework/zend-mvc": "~2.2",
+    "zendframework/zend-config": "^2.5",
+    "zendframework/zend-servicemanager": "^2.7.4 || ^3.0",
+    "slm/queue": "^1.0",
+    "pda/pheanstalk": "~3.0"
+  },
+  "require-dev": {
+    "zendframework/zend-modulemanager": "^2.5",
+    "zendframework/zend-serializer": "^2.5",
+    "zendframework/zend-i18n": "^2.5",
+    "zendframework/zend-log": "^2.5",
+    "zendframework/zend-view": "^2.5",
+    "squizlabs/php_codesniffer": "1.5.*",
+    "phpunit/phpunit": "~4.1"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.4.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-0": {
+      "SlmQueueBeanstalkd": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
 }

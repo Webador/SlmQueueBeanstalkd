@@ -3,7 +3,7 @@
 namespace SlmQueueBeanstalkdTest\Worker;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use SlmQueue\Worker\WorkerEvent;
+use SlmQueue\Worker\Event\ProcessJobEvent;
 use SlmQueueBeanstalkd\Worker\BeanstalkdWorker;
 
 class BeanstalkdWorkerTest extends TestCase
@@ -24,7 +24,7 @@ class BeanstalkdWorkerTest extends TestCase
         $job   = $this->getMock('SlmQueue\Job\JobInterface');
 
         $status = $this->worker->processJob($job, $queue);
-        $this->assertEquals(WorkerEvent::JOB_STATUS_UNKNOWN, $status);
+        $this->assertEquals(ProcessJobEvent::JOB_STATUS_UNKNOWN, $status);
     }
 
     public function testDeleteJobOnSuccess()
@@ -40,7 +40,7 @@ class BeanstalkdWorkerTest extends TestCase
               ->with($job);
 
         $status = $this->worker->processJob($job, $queue);
-        $this->assertEquals(WorkerEvent::JOB_STATUS_SUCCESS, $status);
+        $this->assertEquals(ProcessJobEvent::JOB_STATUS_SUCCESS, $status);
     }
 
     public function testDoNotDeleteJobOnFailure()
@@ -56,6 +56,6 @@ class BeanstalkdWorkerTest extends TestCase
               ->method('delete');
 
         $status = $this->worker->processJob($job, $queue);
-        $this->assertEquals(WorkerEvent::JOB_STATUS_FAILURE_RECOVERABLE, $status);
+        $this->assertEquals(ProcessJobEvent::JOB_STATUS_FAILURE_RECOVERABLE, $status);
     }
 }
