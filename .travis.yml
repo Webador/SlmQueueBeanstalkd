@@ -7,8 +7,6 @@ env:
 matrix:
   fast_finish: true
   include:
-      env:
-        - DEPS=latest
     - php: 5.5
       env:
         - DEPS=lowest
