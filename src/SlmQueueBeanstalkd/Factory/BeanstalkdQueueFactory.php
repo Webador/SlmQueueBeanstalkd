@@ -19,7 +19,12 @@ class BeanstalkdQueueFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return $this($serviceLocator, BeanstalkdQueue::class);
+        $container = $serviceLocator;
+        if (method_exists($container, 'getServiceLocator')) {
+            $container = $container->getServiceLocator() ?: $container;
+        }
+        
+        return $this($container, BeanstalkdQueue::class);
     }
 
 
@@ -41,14 +46,10 @@ class BeanstalkdQueueFactory implements FactoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        if (method_exists($container, 'getServiceLocator')) {
-            $container = $container->getServiceLocator() ?: $container;
-        }
-
         $pheanstalk       = $container->get('SlmQueueBeanstalkd\Service\PheanstalkService');
         $jobPluginManager = $container->get('SlmQueue\Job\JobPluginManager');
 
