@@ -2,6 +2,7 @@
 
 namespace SlmQueueBeanstalkd\Factory;
 
+use Interop\Container\ContainerInterface;
 use SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -16,8 +17,21 @@ class BeanstalkdWorkerControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $worker  = $serviceLocator->getServiceLocator()->get('SlmQueueBeanstalkd\Worker\BeanstalkdWorker');
-        $manager = $serviceLocator->getServiceLocator()->get('SlmQueue\Queue\QueuePluginManager');
+        $container = $serviceLocator;
+        if (method_exists($container, 'getServiceLocator')) {
+            $container = $container->getServiceLocator() ?: $container;
+        }
+        
+        return $this($container, BeanstalkdWorkerController::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        $worker  = $container->get('SlmQueueBeanstalkd\Worker\BeanstalkdWorker');
+        $manager = $container->get('SlmQueue\Queue\QueuePluginManager');
 
         return new BeanstalkdWorkerController($worker, $manager);
     }
