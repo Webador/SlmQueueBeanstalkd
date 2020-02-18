@@ -34,7 +34,7 @@
     },
     "require-dev": {
         "zendframework/zendframework": "~2.2",
-        "squizlabs/php_codesniffer": "1.5.*",
+        "squizlabs/php_codesniffer": "1.5.* || 2.9.*",
         "phpunit/phpunit": "~4.1"
     },
     "extra": {
