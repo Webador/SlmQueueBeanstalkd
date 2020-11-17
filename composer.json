@@ -1,53 +1,74 @@
 {
-    "name": "slm/queue-beanstalkd",
-    "description": "Zend Framework 2 module that integrates with Beanstalkd queuing system",
-    "license": "BSD-3-Clause",
-    "type": "library",
-    "keywords": [
-        "zf2",
-        "queue",
-        "job",
-        "beanstalk",
-        "beanstalkd",
-        "pheanstalk"
-    ],
-    "homepage": "https://github.com/juriansluiman/SlmQueueBeanstalkd",
-    "authors": [
-        {
-            "name": "Jurian Sluiman",
-            "email": "jurian@juriansluiman.nl",
-            "homepage": "http://juriansluiman.nl"
-        },
-        {
-            "name": "Michaël Gallego",
-            "email": "mic.gallego@gmail.com",
-            "homepage": "http://www.michaelgallego.fr"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "zendframework/zend-mvc": "~2.2",
-        "zendframework/zend-servicemanager": "~2.2",
-        "zendframework/zend-stdlib": "~2.2",
-        "slm/queue": "0.4.*",
-        "pda/pheanstalk": "~3.0"
+  "name": "slm/queue-Beanstalkd",
+  "description": "Laminas Framework module that integrates Beanstalkd as queuing system",
+  "license": "BSD-3-Clause",
+  "type": "library",
+  "keywords": [
+    "laminas",
+    "mezzio",
+    "queue",
+    "job",
+    "beanstalkd",
+    "pheanstalk"
+  ],
+  "homepage": "https://github.com/JouwWeb/SlmQueueBeanstalkd",
+  "authors": [
+    {
+      "name": "Stefan Kleff",
+      "email": "s.kleff@goalio.de",
+      "homepage": "http://www.goalio.de"
     },
-    "require-dev": {
-        "zendframework/zendframework": "~2.2",
-        "squizlabs/php_codesniffer": "1.5.*",
-        "phpunit/phpunit": "~4.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.4.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-0": {
-            "SlmQueueBeanstalkd": "src/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
+    {
+      "name": "Bas Kamer",
+      "email": "baskamer@gmail.com",
+      "homepage": "https://bushbaby.nl"
     }
+  ],
+  "require": {
+    "php": "^7.2",
+    "laminas/laminas-eventmanager": "^3.2.1",
+    "laminas/laminas-servicemanager": "^3.3.1",
+    "laminas/laminas-stdlib": "^3.2",
+    "slm/queue": "^2.0",
+    "pda/pheanstalk": "^4.0"
+  },
+  "require-dev": {
+    "laminas/laminas-config": "^2.6 || ^3.0",
+    "laminas/laminas-modulemanager": "^2.8",
+    "laminas/laminas-view": "^2.10",
+    "laminas/laminas-log": "^2.9",
+    "laminas/laminas-i18n": "^2.6",
+    "laminas/laminas-serializer": "^2.8",
+    "laminas/laminas-mvc": "^2.7.13",
+    "phpunit/phpunit": "^8.5",
+    "squizlabs/php_codesniffer": "^3.5",
+    "php-coveralls/php-coveralls": "^2.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.1.x-dev"
+    },
+    "laminas": {
+      "module": "SlmQueueBeanstalkd\\Module",
+      "config-provider": "SlmQueueBeanstalkd\\ConfigProvider",
+      "component-whitelist": [
+        "slm/queue"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "SlmQueueBeanstalkd\\": "src/",
+      "SlmQueueTest\\": "vendor/slm/queue/tests/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SlmQueueBeanstalkdTest\\": "tests/"
+    }
+  },
+  "scripts": {
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf"
+  }
 }

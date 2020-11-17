@@ -11,7 +11,7 @@ Created by Jurian Sluiman and Michaël Gallego
 
 Requirements
 ------------
-* [Zend Framework 2](https://github.com/zendframework/zf2)
+* [Laminas MVC Skeleton](https://github.com/laminas/laminas-mvc-skeleton)
 * [SlmQueue](https://github.com/juriansluiman/SlmQueue)
 * [Pda Pheanstalk](https://github.com/pda/pheanstalk)
 
@@ -24,7 +24,7 @@ add the following line into your `composer.json` file:
 
 ```json
 "require": {
-	"slm/queue-beanstalkd": "0.4.*"
+	"slm/queue-beanstalkd": "2.0.*"
 }
 ```
 

@@ -6,3 +6,8 @@
 
 - This version is a complete rewrite of SlmQueue. It is now splitted in several modules and support both
 Beanstalkd and Amazon SQS queue systems through SlmQueueBeanstalkd and SlmQueueSqs modules.
+
+# 2.0.0
+
+- Complete rewrite to support latest Laminas framework, Pheanstalk and PHPUnit
+- Require PHP 7

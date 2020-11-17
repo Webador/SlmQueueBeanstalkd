@@ -16,17 +16,51 @@
  * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
-return array(
-    'slm_queue' => array(
-        'worker' => array(
-            // Limit runs to 1 in test environment
-            'max_runs' => 1
-        ),
 
-        'queue_manager' => array(
-            'factories' => array(
-                'newsletter' => 'SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory'
-            )
+use SlmQueue\Strategy\MaxRunsStrategy;
+use SlmQueueBeanstalkd\Factory\BeanstalkdQueueFactory;
+use SlmQueue\Factory\WorkerFactory;
+use SlmQueueBeanstalkd\Controller\BeanstalkdWorkerController;
+use SlmQueueBeanstalkd\Factory\BeanstalkdWorkerControllerFactory;
+use SlmQueueBeanstalkd\Strategy\ClearObjectManagerStrategy;
+use SlmQueueBeanstalkd\Worker\BeanstalkdWorker;
+
+return array(
+    'slm_queue' => [
+        'worker_strategies' => [
+            'default' => [
+                MaxRunsStrategy::class => ['max_runs' => 1]
+            ]
+        ],
+        'queues'            => [
+            'my-beanstalkd-queue' => [
+                'deleted_lifetime' => -1,
+                'buried_lifetime'  => -1,
+            ],
+        ],
+        'queue_manager'     => [
+            'factories' => [
+                'mailing' => BeanstalkdQueueFactory::class
+            ]
+        ],
+    ],
+
+    'service_manager' => [
+        'factories' => [
+            BeanstalkdWorker::class => WorkerFactory::class,
+            \Pheanstalk::class => \SlmQueueBeanstalkd\Factory\PheanstalkFactory::class
+        ]
+    ],
+    'controllers'     => [
+        'factories' => [
+            BeanstalkdWorkerController::class => BeanstalkdWorkerControllerFactory::class,
+        ],
+    ],
+    'beanstalkd' => array(
+        'connection' => array(
+            'host'    => '0.0.0.0',
+            'port'    => 11300,
+            'timeout' => 2
         )
     )
 );
