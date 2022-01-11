@@ -11,7 +11,7 @@
         "beanstalkd",
         "pheanstalk"
     ],
-    "homepage": "https://github.com/juriansluiman/SlmQueueBeanstalkd",
+    "homepage": "https://github.com/Webador/SlmQueueBeanstalkd",
     "authors": [
         {
             "name": "Jurian Sluiman",
